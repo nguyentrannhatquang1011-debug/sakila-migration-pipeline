@@ -1,0 +1,31 @@
+[0m16:11:32.960164 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76e719e02e10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76e718fd0a70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76e718fbfda0>]}
+
+
+============================== 16:11:32.963282 | d25bff38-313c-4d97-852f-843c5fbda6af ==============================
+[0m16:11:32.963282 [info ] [MainThread]: Running with dbt=1.11.12
+[0m16:11:32.964019 [debug] [MainThread]: running dbt with arguments {'empty': 'None', 'target_path': 'None', 'fail_fast': 'False', 'printer_width': '80', 'log_path': 'logs', 'use_colors': 'True', 'version_check': 'True', 'log_cache_events': 'False', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'invocation_command': 'dbt init sakila_dbt', 'static_parser': 'True', 'partial_parse': 'True', 'no_print': 'None', 'send_anonymous_usage_stats': 'True', 'write_json': 'True', 'profiles_dir': '/home/quang_nguyen/.dbt', 'debug': 'False', 'use_experimental_parser': 'False', 'warn_error': 'None', 'log_format': 'default', 'quiet': 'False', 'indirect_selection': 'eager', 'cache_selected_only': 'False'}
+[0m16:11:32.971180 [info ] [MainThread]: Creating dbt configuration folder at /home/quang_nguyen/.dbt
+[0m16:11:32.972509 [debug] [MainThread]: Starter project path: /home/quang_nguyen/projects/sakila-migration-pipeline/dbt_env/lib/python3.12/site-packages/dbt/include/starter_project
+[0m16:11:32.975351 [info ] [MainThread]: 
+Your new dbt project "sakila_dbt" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m16:11:32.975750 [info ] [MainThread]: Setting up your profile.
+[0m16:42:55.953780 [info ] [MainThread]: Profile sakila_dbt written to /home/quang_nguyen/.dbt/profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m16:42:55.968035 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 1880.8608, "process_in_blocks": "3896", "process_kernel_time": 0.257937, "process_mem_max_rss": "211868", "process_out_blocks": "80", "process_user_time": 1.681328}
+[0m16:42:55.981602 [debug] [MainThread]: Command `dbt init` succeeded at 16:42:55.980864 after 1880.88 seconds
+[0m16:42:55.985109 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76e7180d4590>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76e7011226c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76e7016f2270>]}
+[0m16:42:55.987307 [debug] [MainThread]: Flushing usage events
+[0m16:42:57.765066 [debug] [MainThread]: An error was encountered while trying to flush usage events

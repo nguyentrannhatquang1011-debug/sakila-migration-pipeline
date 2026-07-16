@@ -1,0 +1,30 @@
+# ==========================================
+# System & IDE Files
+# ==========================================
+.DS_Store
+.vscode/
+.idea/
+
+# ==========================================
+# Astro / Docker Environment
+# ==========================================
+airflow/.astro/
+airflow/logs/
+airflow/plugins/__pycache__/
+airflow/dags/__pycache__/
+
+# ==========================================
+# dbt Environment
+# ==========================================
+sakila_dbt/logs/
+sakila_dbt/target/
+sakila_dbt/dbt_packages/
+# Exclude the generated profiles.yml if written locally
+profiles.yml
+
+# ==========================================
+# Credentials and Environment files
+# ==========================================
+.env
+*.json
+!airflow/packages.txt

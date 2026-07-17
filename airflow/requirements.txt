@@ -1,2 +1,3 @@
 # airflow/requirements.txt
 apache-airflow-providers-mysql
+apache-airflow-providers-google

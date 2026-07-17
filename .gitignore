@@ -30,3 +30,6 @@ profiles.yml
 !airflow/packages.txt
 mysql-init.txt
 password.sql
+
+# Exclude dbt local python virtual environment
+dbt_env/

@@ -47,7 +47,6 @@ with DAG(
                 task_id=f'extract_{table}_to_gcs',
                 mysql_conn_id='mysql_local',
                 # 1. TEMPORAL WATERMARK: Filters source data to only grab the daily delta
-                # Example "data_interval_start" and "data_interval_end" for a DAG run on 2026-07-01 would be:
                 # data_interval_start: 2026-07-01 00:00:00
                 # data_interval_end: 2026-07-02 00:00:00
                 sql=f"""
@@ -64,7 +63,8 @@ with DAG(
                 # 3. FILE CHUNKING: Automatically splits files if they exceed 10MB (10,485,760 bytes)
                 approx_max_file_size_bytes=10485760,
                 export_format='json',
-                allow_empty=True,                      # Prevents task failure if a table had 0 updates today
+                # FIXED: Removed allow_empty=True. 
+                # write_on_empty defaults to False, meaning 0 rows will exit cleanly with success.                      # Prevents task failure if a table had 0 updates today
                 gcp_conn_id='google_cloud_default'
             )
 

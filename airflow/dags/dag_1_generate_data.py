@@ -26,7 +26,7 @@ with DAG(
 
     # Task to invoke the Python data generation engine
     execute_generation = PythonOperator(
-        task_id='simulate_source_mutations',
+        task_id='data_generation_task',
         python_callable=run_comprehensive_generation,
         op_kwargs={'mysql_conn_id': 'mysql_local'}
     )

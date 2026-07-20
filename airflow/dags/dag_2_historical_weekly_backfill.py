@@ -8,6 +8,16 @@ from airflow.utils.task_group import TaskGroup
 
 TABLES_TO_MIGRATE = ['rental', 'payment', 'customer', 'film', 'actor', 'film_actor', 'inventory']
 
+TABLE_CLUSTERING_FIELDS = {
+    'rental': ['customer_id', 'inventory_id'],
+    'payment': ['customer_id', 'rental_id'],
+    'customer': ['customer_id', 'store_id'],
+    'film': ['film_id', 'language_id'],
+    'actor': ['actor_id'],
+    'film_actor': ['actor_id', 'film_id'],
+    'inventory': ['inventory_id', 'film_id', 'store_id']
+}
+
 GCS_BUCKET = 'sakila-landing-zone-quang-2026'
 BQ_RAW_DATASET = 'sakila_raw'
 
@@ -68,6 +78,7 @@ with DAG(
                     "type": "DAY",
                     "field": "last_update"
                 },
+                cluster_fields=TABLE_CLUSTERING_FIELDS.get(table),
                 gcp_conn_id='google_cloud_default'
             )
 

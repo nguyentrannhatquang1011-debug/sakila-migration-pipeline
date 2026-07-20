@@ -8,6 +8,16 @@ from airflow.utils.task_group import TaskGroup
 
 TABLES_TO_MIGRATE = ['rental', 'payment', 'customer', 'film', 'actor', 'film_actor', 'inventory']
 
+TABLE_CLUSTERING_FIELDS = {
+    'rental': ['customer_id', 'inventory_id', 'staff_id'],
+    'payment': ['customer_id', 'rental_id', 'staff_id'],
+    'customer': ['customer_id', 'store_id'],
+    'film': ['film_id', 'language_id'],
+    'actor': ['actor_id'],
+    'film_actor': ['actor_id', 'film_id'],
+    'inventory': ['inventory_id', 'film_id', 'store_id']
+}
+
 GCS_BUCKET = 'sakila-landing-zone-quang-2026'
 BQ_RAW_DATASET = 'sakila_raw'
 
@@ -42,6 +52,9 @@ with DAG(
             extract_to_gcs = MySQLToGCSOperator(
                 task_id=f'extract_{table}_to_gcs',
                 mysql_conn_id='mysql_local',
+                # Why 4 {{{{}}}}: 
+                # - The outermost {{}} are for Airflow's Jinja templating engine to recognize the expression.
+                # - The inner {{}} are for the SQL query to correctly format the date string.
                 sql=f"""
                     SELECT * FROM {table} 
                     WHERE last_update >= '{{{{ ds }}}} 00:00:00' 
@@ -65,10 +78,14 @@ with DAG(
                 source_format='PARQUET',
                 write_disposition='WRITE_APPEND',       # Appends daily delta into last_update column partition
                 autodetect=True,
+                # Explain time_partitioning: This parameter specifies the partitioning configuration for the BigQuery table.
+                # - "type": "DAY" indicates that the table will be partitioned by day
+                # - "field": "last_update" specifies that the partitioning will be based on the values in the last_update column of the table.
                 time_partitioning={
                     "type": "DAY",
                     "field": "last_update"
                 },
+                cluster_fields=TABLE_CLUSTERING_FIELDS.get(table),
                 gcp_conn_id='google_cloud_default'
             )
 

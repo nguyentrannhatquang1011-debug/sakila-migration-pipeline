@@ -20,7 +20,7 @@ with DAG(
     schedule='@daily',
     start_date=datetime(2026, 7, 1), # year, month, day
     max_active_runs=3,             # HARD REQUIREMENT: Limits parallel execution instances to 3
-    catchup=False,
+    catchup=True,
     tags=['production_simulation', 'sakila']
 ) as dag:
 

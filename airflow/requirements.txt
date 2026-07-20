@@ -1,3 +1,6 @@
 # airflow/requirements.txt
 apache-airflow-providers-mysql
 apache-airflow-providers-google
+
+# Astro CLI natively manages and caches packages listed here
+astronomer-cosmos

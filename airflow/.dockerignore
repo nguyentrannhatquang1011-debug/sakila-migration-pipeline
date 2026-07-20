@@ -1,8 +1,23 @@
-astro
-.git
-.env
+# ~/projects/sakila-migration-pipeline/airflow/.dockerignore
+
+# Ignore all container engine runtime states
+.astro/
+.astroignore
 airflow_settings.yaml
+
+# Ignore active database logs and locks
 logs/
-.venv
-airflow.db
-airflow.cfg
+logs/**
+*.log
+
+# Ignore local python compilation artifacts
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore local environment variables and secret stores
+.env
+*.json
+*.db
+*.csv

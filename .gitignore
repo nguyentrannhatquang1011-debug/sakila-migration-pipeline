@@ -27,8 +27,10 @@ profiles.yml
 # ==========================================
 .env
 *.json
+airflow/include/gcp_key.json
 !airflow/packages.txt
 mysql-init.txt
+mysql_root_password.txt
 password.sql
 
 # Exclude dbt local python virtual environment
